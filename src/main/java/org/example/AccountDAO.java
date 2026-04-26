@@ -21,7 +21,7 @@ public class AccountDAO {
                 );
             }
         }catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("DAO Error: " +e.getMessage());
         }
         return null;
     }
