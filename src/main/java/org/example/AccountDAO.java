@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class AccountDAO {
     public Account getAccount(int id){
-        String sql="SELECT * FROM accounts WHERE id=?";
+        String sql="SELECT * FROM accounts WHERE id = ?";
         try(Connection conn =DatabaseConfig.getConnection();
             PreparedStatement stmt=conn.prepareStatement(sql)){
             stmt.setInt(1,id);
@@ -16,7 +16,7 @@ public class AccountDAO {
             if(rs.next()){
                 return new Account(
                         rs.getInt("id"),
-                        rs.getString("owner"),
+                        rs.getString("owner_name"),
                         rs.getDouble("balance")
                 );
             }
@@ -26,17 +26,20 @@ public class AccountDAO {
         return null;
     }
 
-    public void updateBalance(int id,double newBalance){
-        String sql="UPDATE accounts SET balance=?WHERE id=?";
+    public boolean updateBalance(int id,double newBalance){
+        String sql="UPDATE accounts SET balance = ? WHERE id = ?";
         try(Connection conn=DatabaseConfig.getConnection();
         PreparedStatement stmt=conn.prepareStatement(sql)
         ){
             stmt.setDouble(1,newBalance);
             stmt.setInt(2,id);
-            stmt.executeUpdate();
-            System.out.println("Database updated successfully");
+            int rowAffected=stmt.executeUpdate();
+            return rowAffected > 0;
+
+
         }catch(SQLException e){
             System.out.println("update failed: "+e.getMessage());
+            return false;
         }
     }
 }
