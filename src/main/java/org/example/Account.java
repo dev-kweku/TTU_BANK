@@ -14,4 +14,5 @@ public class Account {
     public int getId(){return id;}
     public String getOwner(){return owner;}
     public double getBalance(){return balance;}
+    public double setBalance(double balance){return balance;}
 }
