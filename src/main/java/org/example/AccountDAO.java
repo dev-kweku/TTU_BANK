@@ -47,7 +47,7 @@ public class AccountDAO {
 
         }catch(SQLException e){
             System.out.println("update failed: "+e.getMessage());
-            logger.error("failed to update database: {}. Error: {}",e.getMessage());
+            logger.error("failed to update database: {}.",e.getMessage());
             return false;
         }
     }
