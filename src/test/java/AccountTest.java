@@ -16,8 +16,8 @@ class AccountTest {
   @Test
     @DisplayName("Should correctly reduce balance on withdrawal")
     void testWithdrawalSuccess(){
-      double amountToWithdraw=200.00;
-      double expectedBalance=800.00;
+      double amountToWithdraw=200.0;
+      double expectedBalance=800.0;
 
       testAccount.setBalance(testAccount.getBalance()-amountToWithdraw);
 
